@@ -2,33 +2,10 @@ namespace RefactoringToPatterns.CreationMethods
 {
     public class ProductPackage
     {
-        private readonly string _internetLabel;
-        private readonly int? _telephoneNumber;
-        private readonly string[] _tvChannels;
-
-        public ProductPackage(string internetLabel)
-        {
-            _internetLabel = internetLabel;
-        }
-
-        public ProductPackage(string internetLabel, int telephoneNumber)
-        {
-            _internetLabel = internetLabel;
-            _telephoneNumber = telephoneNumber;
-        }
-
-        public ProductPackage(string internetLabel, string[] tvChannels)
-        {
-            _internetLabel = internetLabel;
-            _tvChannels = tvChannels;
-        }
-
-        public ProductPackage(string internetLabel, int telephoneNumber, string[] tvChannels)
-        {
-            _internetLabel = internetLabel;
-            _telephoneNumber = telephoneNumber;
-            _tvChannels = tvChannels;
-        }
+        private string _internetLabel;
+        private int? _telephoneNumber;
+        private string[] _tvChannels;
+        private int? _mobile;
 
         public bool HasInternet()
         {
@@ -44,6 +21,84 @@ namespace RefactoringToPatterns.CreationMethods
         public bool HasTv()
         {
             return _tvChannels != null;
+        }
+
+        public static ProductPackage WithInternet(string internetLabel)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel
+            };
+            return productPackage;
+        }
+
+        public static ProductPackage WithInternetAndVoip(string internetLabel, int telephoneNumber)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel,
+                _telephoneNumber = telephoneNumber
+            };
+            return productPackage;
+        }
+
+        public static ProductPackage WithInternetAndTv(string internetLabel, string[] tvChannels)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel,
+                _tvChannels = tvChannels
+            };
+            return productPackage;
+        }
+
+        public static ProductPackage WithInternetVoipAndTv(string internetLabel, int telephoneNumber, string[] tvChannels)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel,
+                _telephoneNumber = telephoneNumber,
+                _tvChannels = tvChannels
+            };
+            return productPackage;
+        }
+
+        public bool HasMobile()
+        {
+            return _mobile != null;
+        }
+
+        public static ProductPackage WithInternetAndMobile(string internetLabel, int mobileNumber)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel,
+                _mobile = mobileNumber
+            };
+            return productPackage;
+        }
+
+        public static ProductPackage WithInternetMobileAndTv(string internetLabel, int mobileNumber, string[] tvChannels)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel,
+                _mobile = mobileNumber,
+                _tvChannels = tvChannels
+            };
+            return productPackage;
+        }
+
+        public static ProductPackage WithInternetMobileVOIPAndTv(string internetLabel, int mobileNumber, int telephoneNumber, string[] tvChannels)
+        {
+            var productPackage = new ProductPackage
+            {
+                _internetLabel = internetLabel,
+                _mobile = mobileNumber,
+                _tvChannels = tvChannels,
+                _telephoneNumber = telephoneNumber
+            };
+            return productPackage;
         }
     }
 }
